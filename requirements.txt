@@ -1,0 +1,13 @@
+pytelegrambotapi
+Django~=3.2.7
+requests~=2.26.0
+BS4~=0.0.1
+selenium~=3.141.0
+virtualenv
+python-dotenv~=0.19.0
+Celery
+lxml~=4.6.3
+dotenv
+aiohttp
+requests-html
+beautifulsoup4~=4.10.0
