@@ -115,16 +115,21 @@ class PostReportAIVS(models.Model):
 
 class PostRoportManual(models.Model):
     post = models.ForeignKey(GidroPost, on_delete=models.CASCADE)
-    report_time = models.CharField(max_length=100,verbose_name='Дата та час звіту',blank=True, null=True)
+    report_time = models.DateTimeField(verbose_name='Дата та час звіту', blank=True)
+    # report_time = models.CharField(max_length=300,verbose_name='Дата та час звіту',blank=True, null=False)
     water_level_08_00 = models.IntegerField(verbose_name = 'Рівень води на 08 00',blank=True, null=True)
     water_level_20_00 = models.IntegerField(verbose_name = 'Рівень води на 20 00',blank=True, null=True)
-    precipitation_doba = models.DecimalField(max_digits=7, decimal_places=3, verbose_name='Опади за добу',blank=True, null=True)
-    precipitation_den = models.DecimalField(max_digits=7, decimal_places=3, verbose_name='Опади за день',blank=True, null=True)
+    precipitation_doba = models.DecimalField(max_digits=7, decimal_places=1, verbose_name='Опади за добу',blank=True, null=True)
+    precipitation_den = models.DecimalField(max_digits=7, decimal_places=1, verbose_name='Опади за день',blank=True, null=True)
 
     class Meta:
         unique_together = [('post', 'report_time','water_level_08_00')]
         verbose_name = 'Звіт Гідрологічних постів ручні'
         verbose_name_plural = 'Звіти Гідрологічних постів ручні'
+
+    def __str__(self):
+        return f'{self.post} {self.report_time}'
+
 
 class StuchiyniYavusha(models.Model):
     post = models.ForeignKey(GidroPost, on_delete=models.CASCADE)
